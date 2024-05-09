@@ -14,9 +14,10 @@ public class Person {
     // return -> Rückgabe und Abbruch der Ausführung der Methode
     // keine Rückgabe -> Rückgabetype: void
 
-    Person(String vorname, String nachname, LocalDate geburtzdatum) {
+    Person(String vorname, String nachname, double gewicht, LocalDate geburtzdatum) {
         this.vorname = vorname;
         this.nachname = nachname;
+        this.gewicht = gewicht;
         this.geburtzdatum = geburtzdatum;
     }
     public  int alter() {
@@ -30,5 +31,13 @@ public class Person {
 
     }public void abnehmen(double kg) {
         gewicht -= kg;
+    }
+
+    public void setGewicht(double gewicht) {
+        this.gewicht = gewicht;
+    }
+
+    public double getGewicht() {
+        return gewicht;
     }
 }

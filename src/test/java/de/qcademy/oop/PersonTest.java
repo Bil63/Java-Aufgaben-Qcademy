@@ -8,19 +8,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PersonTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void zunehmen() {
         //3As
         //Arrange
-       Person max = new Person("Max", "Müller", 80, LocalDate.now());
+       Person max = new Person("Max", "Müller", 80.0, LocalDate.of(1998, 12,19));
        double expectedResult = 85;
         //Act
         max.zunehmen(5);
         //Assert
-        assertEquals(expectedResult, max.setGewicht());
+        assertEquals(expectedResult, max.getGewicht());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void abnehmen() {
     }
 
