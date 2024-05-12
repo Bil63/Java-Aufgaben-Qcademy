@@ -1,40 +1,100 @@
 package de.qcademy.oop2;
 
+import java.util.Arrays;
+
 public class Firma {
 
     private String name;
     private String adresse;
-    private int anzahlRaeume;
-    private int moeglicheAnzahlRaeume;
-    private int[] gebucht;
+    private int kapazitaet;
+    private final Raum[] rooms;
+    private int roomsAdded;
 
-
-    Firma(String name, String adresse, int anzahlRaeume, int moeglicheAnzahlRaeume) {
+    public Firma(String name, String adresse, int kapazitaet) {
         this.name = name;
         this.adresse = adresse;
-        this.anzahlRaeume = 0;
-        this.moeglicheAnzahlRaeume = moeglicheAnzahlRaeume;
-        this.gebucht = new int[moeglicheAnzahlRaeume];
+        this.kapazitaet = kapazitaet;
+        this.rooms = new Raum[kapazitaet];
     }
-    public void fuegeRaumHinzu(int plaetze) {
-        if (anzahlRaeume < moeglicheAnzahlRaeume) {
-            gebucht[anzahlRaeume] = plaetze;
-            anzahlRaeume++;
-            System.out.println("Raum mit " + plaetze + " Sitzplätzen wurde hinzufügt");
-        }else {
-            System.out.println("Maximal Anzahl der möglichen Raümen erreicht!");
+    public int getFreieRaum() {
+        int count = 0;
+        for (Raum r : rooms) {
+            if (!r.isBooked()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public void raumHinzufuegenBeiPlatz(int platzNummer) {
+        if (this.roomsAdded == this.kapazitaet) {
+            System.err.println("Kein Raum verfügbar! Alle Räume sind besetzt");
+            return;
+        }
+        for (int i = 0; i < rooms.length; i++) {
+            if (this.rooms[i] == null) {
+                this.rooms[i] = new Raum(platzNummer);
+                this.roomsAdded++;
+                return;
+            }
+        }
+    }
+    public void RaumHinzufuegen(Raum raum) {
+        if (this.roomsAdded == this.kapazitaet) {
+            System.err.println("Kein Raum verfügbar! Alle Räume sind besetzt");
+            return;
+        }
+        for (int i = 0; i < rooms.length; i++) {
+            if (this.rooms[i] == null) {
+                this.rooms[i] = raum;
+                this.roomsAdded++;
+                return;
+            }
         }
     }
 
-    public int sucheRaum(int plaetze) {
-        for (int i = 0; i < anzahlRaeume; i++) {
-            if (gebucht[i] == plaetze) {
-                return i + 1;
+    public Raum findeRaumBeiPlatzNummer(int platzNummer) {
+        Raum result = null;
+        for (Raum r : rooms) {
+            if (r.getPlatzNummer() == platzNummer) {
+                result = r;
             }
         }
-        return - 1;
+        return result;
     }
-    public int anzahlFrei() {
-        return moeglicheAnzahlRaeume - anzahlRaeume;
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setKapazitaet(int kapazitaet) {
+        this.kapazitaet = kapazitaet;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public int getKapazitaet() {
+        return kapazitaet;
+    }
+
+    @Override
+    public String toString() {
+        return "Firma{" +
+                "name='" + name + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", kapazitaet=" + kapazitaet +
+                ", rooms=" + Arrays.toString(rooms) +
+                '}';
     }
 }
