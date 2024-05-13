@@ -1,7 +1,5 @@
 package de.qcademy.oop2;
 
-import java.util.Arrays;
-
 public class Firma {
 
     private String name;
@@ -26,32 +24,6 @@ public class Firma {
         return count;
     }
 
-    public void raumHinzufuegenBeiPlatz(int platzNummer) {
-        if (this.roomsAdded == this.kapazitaet) {
-            System.err.println("Kein Raum verfügbar! Alle Räume sind besetzt");
-            return;
-        }
-        for (int i = 0; i < rooms.length; i++) {
-            if (this.rooms[i] == null) {
-                this.rooms[i] = new Raum(platzNummer);
-                this.roomsAdded++;
-                return;
-            }
-        }
-    }
-    public void RaumHinzufuegen(Raum raum) {
-        if (this.roomsAdded == this.kapazitaet) {
-            System.err.println("Kein Raum verfügbar! Alle Räume sind besetzt");
-            return;
-        }
-        for (int i = 0; i < rooms.length; i++) {
-            if (this.rooms[i] == null) {
-                this.rooms[i] = raum;
-                this.roomsAdded++;
-                return;
-            }
-        }
-    }
 
     public Raum findeRaumBeiPlatzNummer(int platzNummer) {
         Raum result = null;
@@ -66,9 +38,6 @@ public class Firma {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
 
