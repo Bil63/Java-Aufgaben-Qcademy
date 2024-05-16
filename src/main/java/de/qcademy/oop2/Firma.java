@@ -4,37 +4,66 @@ public class Firma {
 
     private String name;
     private String adresse;
-    private int anzahlRaeume;
-    private int moeglicheAnzahlRaeume;
-    private int[] gebucht;
+    private int kapazitaet;
+    private final Raum[] rooms;
+    private int roomsAdded;
 
-
-    Firma(String name, String adresse, int anzahlRaeume, int moeglicheAnzahlRaeume) {
+    public Firma(String name, String adresse, int kapazitaet) {
         this.name = name;
         this.adresse = adresse;
-        this.anzahlRaeume = 0;
-        this.moeglicheAnzahlRaeume = moeglicheAnzahlRaeume;
-        this.gebucht = new int[moeglicheAnzahlRaeume];
+        this.kapazitaet = kapazitaet;
+        this.rooms = new Raum[kapazitaet];
     }
-    public void fuegeRaumHinzu(int plaetze) {
-        if (anzahlRaeume < moeglicheAnzahlRaeume) {
-            gebucht[anzahlRaeume] = plaetze;
-            anzahlRaeume++;
-            System.out.println("Raum mit " + plaetze + " Sitzplätzen wurde hinzufügt");
-        }else {
-            System.out.println("Maximal Anzahl der möglichen Raümen erreicht!");
-        }
-    }
-
-    public int sucheRaum(int plaetze) {
-        for (int i = 0; i < anzahlRaeume; i++) {
-            if (gebucht[i] == plaetze) {
-                return i + 1;
+    public int getFreieRaum() {
+        int count = 0;
+        for (Raum r : rooms) {
+            if (!r.isBooked()) {
+                count++;
             }
         }
-        return - 1;
+        return count;
     }
-    public int anzahlFrei() {
-        return moeglicheAnzahlRaeume - anzahlRaeume;
+
+
+    public Raum findeRaumBeiPlatzNummer(int platzNummer) {
+        Raum result = null;
+        for (Raum r : rooms) {
+            if (r.getPlatzNummer() == platzNummer) {
+                result = r;
+            }
+        }
+        return result;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+        this.adresse = adresse;
+    }
+
+    public void setKapazitaet(int kapazitaet) {
+        this.kapazitaet = kapazitaet;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public int getKapazitaet() {
+        return kapazitaet;
+    }
+
+    @Override
+    public String toString() {
+        return "Firma{" +
+                "name='" + name + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", kapazitaet=" + kapazitaet +
+                ", rooms=" + Arrays.toString(rooms) +
+                '}';
     }
 }
