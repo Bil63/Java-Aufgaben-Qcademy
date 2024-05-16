@@ -45,25 +45,8 @@ public class Firma {
         this.kapazitaet = kapazitaet;
     }
 
-    public String getName() {
-        return name;
     }
-
-    public String getAdresse() {
-        return adresse;
     }
-
-    public int getKapazitaet() {
-        return kapazitaet;
     }
-
-    @Override
-    public String toString() {
-        return "Firma{" +
-                "name='" + name + '\'' +
-                ", adresse='" + adresse + '\'' +
-                ", kapazitaet=" + kapazitaet +
-                ", rooms=" + Arrays.toString(rooms) +
-                '}';
     }
 }
