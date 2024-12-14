@@ -45,8 +45,14 @@ public class Firma {
         this.kapazitaet = kapazitaet;
     }
 
+    public void raumHinzufuegenBeiPlatz(int i) {
+
     }
-    }
-    }
+
+    public void RaumHinzufuegen(Raum bookedRaum) {
+
     }
 }
+
+
+
